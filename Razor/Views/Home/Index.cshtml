@@ -2,7 +2,155 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div>
+
+    <div>
+        <h6>
+            1. Dichiarare una variabile valorizzandola con il nostro nome.
+            Dichiarare un'altra variabile valorizzandola con il nostro cognome.
+            Stampare il nostro nome e cognome all'interno di un tag h2.
+        </h6>
+
+        @{
+            var name = "Giada";
+            var surname = "Genovesi";
+        }
+        <p>
+            Ciao il mio nome è @name @surname
+        </p>
+    </div>
+
+    <hr />
+
+    <div>
+        <h6>
+            2. Creare una funzione che stampa la somma dei numeri che vanno da 1 a n (con n passato come parametro - n incluso)
+            Stampare dentro uno span il risultato.
+        </h6>
+        @functions {
+            static int PrintSum(int n)
+            {
+                int sum = 0;
+
+                for (int i = 1; i <= n; i++)
+                {
+                    sum += i;
+
+                }
+                return sum;
+            }
+
+            int result = PrintSum(8);
+        }
+
+        <p>  Ecco il risultato della somma dei tuoi numeri: @result</p>
+    </div>
+
+    <hr />
+
+    <div>
+        <h6>
+            3. Contare quante volte la lettera a è presente nalla frase "nel mezzo del cammin di nostra vita" e stampare questo valore in pagina
+            @{
+                string frase = "nel mezzo del cammin di nostra vita";
+                char search = 'a';
+                int counter = 0;
+
+                foreach (char letter in frase)
+                {
+                    if (letter == search)
+                    {
+                        counter++;
+                    }
+                }
+            }
+
+            <p>La lettera 'a' nella frase è presente  @counter volte</p>
+        </h6>
+    </div>
+
+    <hr />
+
+    <div>
+        <h6>
+            4. Creare una List<int> di 20 numeri interi (generati random da 1 a 90, 1 e 90 inclusi) e mostrare in pagina solo i numeri compresi tra 20 e 70
+        </h6>
+        @{
+            List<int> myNumbers = new List<int>();
+            Random random = new Random();
+
+            for(int i = 0; i < 20; i++)
+            {
+                int randomNumber = random.Next(1, 91);
+                myNumbers.Add(randomNumber);
+            }
+        }
+
+        <ul>
+            @foreach (int number in myNumbers)
+            {
+                @if(number > 20 && number < 70)
+                {
+                    <li>
+                        @number
+                    </li>
+                }
+            }
+        </ul>
+    </div>
+        <hr />
+    <div>
+        <h6>
+            5. Stampare in pagina la data e l'ora attuale (usando la classe DateTime) con il formato anno-mese-giorno ore:minuti:secondi
+        </h6>
+        @{
+            DateTime todayDateTime = DateTime.Now;
+        }
+        <p>
+            @todayDateTime.ToString("dd/MM/yyyy HH:mm:ss")
+        </p>
+    </div>
+
+    <hr />
+
+    <div>
+        <h6>
+            6. Partendo dalla data di oggi (usando la classe DateTime) stampare in pagina
+            a. la data di 7 giorni fa
+            b. che giorno della settimana è oggi (il risultato dovrà essere il nome del giorno (Lunedì, Martedì, ...)
+            c. che giorno della settimana sarà nello stesso giorno e mese di oggi ma tra un anno (il risultato dovrà essere il nome del giorno (Lunedì, Martedì, ...)
+            Collapse
+        </h6>
+        @{
+            DateTime todayDate = DateTime.Today;
+
+            DateTime lastWeekDate = todayDate.AddDays(-7);
+
+            DateTime futureDate = todayDate.AddYears(1);
+        }
+
+        <p>Oggi è il giorno @todayDate.ToString("dddd") @todayDate.ToString("dd/MM/yyyy")</p>
+        <p>Sette giorni fa era il giorno @lastWeekDate.ToString("dddd") @lastWeekDate.ToString("dd/MM/yyyy")</p>
+        <p>Tra un anno la data sarà @futureDate.ToString("dddd") @futureDate.ToString("dd/MM/yyyy")</p>
+    </div>
+    <hr />
+    
+    
+    
+    
+    
+   
+    
+    
+    
+    
+   
+        
+       
+
+
+
+      
+
+
 </div>
